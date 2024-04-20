@@ -1,0 +1,16 @@
+<div class="offset-md-3 mt-md-8">
+  <div class="flex flex-column gap-2 justify-content-center align-items-center">
+    <h1>Gestionar proveedores</h1>
+    <div class="flex gap-2 justify-content-center align-items-center">
+      <a *ngFor="let tabItem of tabItems" (click)="activeLink = tabItem.label" mat-flat-button color="primary"
+        [routerLink]="tabItem.url" routerLinkActive="active">
+        {{tabItem.label}}
+      </a>
+    </div>
+    <hr>
+    <div class="w-full">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+

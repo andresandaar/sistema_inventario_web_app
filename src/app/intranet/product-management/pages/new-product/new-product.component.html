@@ -1,0 +1,50 @@
+<h1>{{currentId ? 'Editar':'Agregar'}} produto <small *ngIf="currentId">{{currentProduct.nombre}}</small></h1>
+<mat-divider class="mb-2"></mat-divider>
+
+<div class="w-100">
+  <mat-card>
+    <mat-card-content>
+      <form class="grid" [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="col-12 sm:col-6">
+          <mat-label>Código</mat-label>
+          <input matInput type="text" required formControlName="codigo" />
+        </mat-form-field>
+
+        <mat-form-field class="col-12 sm:col-6">
+          <mat-label>Nombre</mat-label>
+          <input matInput type="text" required formControlName="nombre" />
+        </mat-form-field>
+
+        <mat-form-field class="col-12">
+          <mat-label>Descripción</mat-label>
+          <input matInput type="text" required formControlName="descripcion" />
+        </mat-form-field>
+
+        <mat-form-field class="col-12">
+          <mat-label>Estado</mat-label>
+          <mat-select required="" formControlName="estado">
+            <mat-option *ngFor="let estado of estados" [value]="estado.id">{{estado.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="col-12">
+          <mat-label>Nombre del laboratorio</mat-label>
+          <input matInput type="text" required formControlName="nombre_laboratorio" />
+        </mat-form-field>
+
+      </form>
+      <div class="flex justify-content-between">
+
+        <button mat-flat-button color="warn" *ngIf="currentId" (click)="OnDeleteProduct()">
+          Borrar
+        </button>
+        <span></span>
+        <button mat-flat-button color="primary" (click)="onSubmit()">
+          <mat-icon>save</mat-icon>
+          Guardar
+        </button>
+
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

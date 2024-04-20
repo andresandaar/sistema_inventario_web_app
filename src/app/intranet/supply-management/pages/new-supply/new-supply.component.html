@@ -1,0 +1,58 @@
+<h1>{{currentId ? 'Editar':'Agregar'}} proveedor <small *ngIf="currentId">{{currentSupply.nombre_contacto}}</small></h1>
+<mat-divider class="mb-2"></mat-divider>
+
+<div class="w-100">
+  <mat-card>
+    <mat-card-content>
+      <form class="grid" [formGroup]="supplyForm" (ngSubmit)="onSubmit()">
+
+        <mat-form-field class="col-12">
+          <mat-label>Tipo de identidicación</mat-label>
+          <mat-select required="" formControlName="tipo_identificacion">
+            <mat-option *ngFor="let ident of tipoIdentificacion " [value]="ident.name">{{ident.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="col-12 sm:col-6">
+          <mat-label>Número de identificación</mat-label>
+          <input matInput type="text" required formControlName="numero_identificacion" />
+        </mat-form-field>
+
+        <mat-form-field class="col-12 sm:col-6">
+          <mat-label>Nombre o razon social</mat-label>
+          <input matInput type="text" required formControlName="nombre_razon_social" />
+        </mat-form-field>
+
+        <mat-form-field class="col-12">
+          <mat-label>Direccion</mat-label>
+          <input matInput type="text" required formControlName="direccion" />
+        </mat-form-field>
+
+
+
+        <mat-form-field class="col-12">
+          <mat-label>Nombre de contacto</mat-label>
+          <input matInput type="text" required formControlName="nombre_contacto" />
+        </mat-form-field>
+
+        <mat-form-field class="col-12">
+          <mat-label>Celular de contacto</mat-label>
+          <input matInput type="text" required formControlName="celular_contacto" />
+        </mat-form-field>
+
+      </form>
+      <div class="flex justify-content-between">
+
+        <button mat-flat-button color="warn" *ngIf="currentId" (click)="OnDeleteSupply()">
+          Borrar
+        </button>
+        <span></span>
+        <button mat-flat-button color="primary" (click)="onSubmit()">
+          <mat-icon>save</mat-icon>
+          Guardar
+        </button>
+
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

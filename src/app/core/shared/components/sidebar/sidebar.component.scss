@@ -1,0 +1,34 @@
+.divider {
+  height: 1px;
+  margin: 9px 0;
+  overflow: hidden;
+  background-color: rgba(120, 130, 140, 0.13);
+}
+
+.active {
+  background: whitesmoke;
+  .link-text {
+    color: #673ab7 !important;
+  }
+  mat-icon {
+    color: #673ab7 !important;
+  }
+}
+
+
+.mat-expansion-panel .mat-expansion-panel-header {
+  padding: 0;
+  padding-right: 20px;
+  padding-left: 20px;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.mat-expansion-panel {
+  margin: 9px 0;
+  padding: 0;
+}
+
+.mat-expansion-panel.mat-expanded {
+  background: whitesmoke;
+}

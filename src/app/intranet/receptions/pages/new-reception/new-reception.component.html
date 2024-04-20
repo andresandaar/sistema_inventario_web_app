@@ -1,0 +1,90 @@
+
+<mat-divider class="mb-2"></mat-divider>
+<div class="w-100">
+  <mat-card>
+    <mat-card-content>
+      <form class="grid" [formGroup]="receptionForm">
+        <h1 class="col-12">Datos basicos recepción</h1>
+        <mat-form-field class="col-12 sm:col-6">
+          <mat-label>Fecha y hora</mat-label>
+          <input matInput [matDatepicker]="picker" required formControlName="fecha_hora">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="col-12 sm:col-6 ">
+          <mat-label>Número de factura</mat-label>
+          <input matInput type="text" required formControlName="numero_factura" />
+        </mat-form-field>
+
+        <mat-form-field class="col-12">
+          <mat-label>Proveedor</mat-label>
+          <mat-select required="" formControlName="proveedor_id">
+            <mat-option *ngFor="let supply of supplys" [value]="supply.id">{{supply.nombre_contacto}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <h1 class="col-12">Recepción de productos por proveedor</h1>
+
+        <div class="container-button col-12">
+          <button mat-raised-button color="primary" (click)="addItemReception()">Nueva entrega</button>
+        </div>
+
+        <ng-container formArrayName="itemsReception">
+          <mat-card-content class="container-cards">
+            <ng-container *ngFor="let itemReception of itemsReception.controls; let i = index">
+              <mat-card-content class="card-item grid text-right pt-2" [formGroup]="itemReception">
+                <button mat-flat-button color="warn" (click)="deleteItemReception(itemReception)">
+                  Borrar
+                </button>
+                <mat-form-field class="col-12 mt_38">
+                  <mat-label>Cantidad</mat-label>
+                  <input matInput type="number" min="0" required formControlName="cantidad" />
+                </mat-form-field>
+
+                <mat-form-field class="col-12">
+                  <mat-label>Lote</mat-label>
+                  <input matInput type="text" required formControlName="lote" />
+                </mat-form-field>
+
+                <mat-form-field class="col-12">
+                  <mat-label>Registro invima</mat-label>
+                  <input matInput type="text" required formControlName="registro_invima" />
+                </mat-form-field>
+
+
+                <mat-form-field class="col-12">
+                  <mat-label>Fecha de vencimiento</mat-label>
+                  <input matInput [matDatepicker]="picker" required formControlName="fecha_vencimiento">
+                  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field class="col-12">
+                  <mat-label>Estado del producto</mat-label>
+                  <input matInput type="text" required formControlName="estado_presentacion_producto" />
+                </mat-form-field>
+
+                <mat-form-field class="col-12">
+                  <mat-label>Producto</mat-label>
+                  <mat-select required="" formControlName="producto_id">
+                    <mat-option *ngFor="let product of products" [value]="product.id">{{product.nombre}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+              </mat-card-content>
+            </ng-container>
+          </mat-card-content>
+        </ng-container>
+
+      </form>
+
+      <div class="flex justify-content-end">
+        <button mat-flat-button color="primary" (click)="onSubmit()">
+          <mat-icon>save</mat-icon>
+          Guardar
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
